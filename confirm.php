@@ -16,7 +16,7 @@ if (isset($_POST['token']) && isset($_SESSION['token'])) {
 }
 
 //変数にPOSTされたデータを代入します。
-$name = isset($_POST['username']) ? $_POST['username'] :'';
+$username = isset($_POST['username']) ? $_POST['username'] :'';
 
 $error = array();
 

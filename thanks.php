@@ -3,10 +3,10 @@ require_once 'h.php';
 require_once 'checkInput.php';
 require_once 'sendmail.php';
 
-$mailTo = 'mako480817@gmail.com';
+$mailTo = 'info@plandomakohatto.sakura.ne.jp';
 $subject = '注文が入りました';
 //Return-Pathにしていするメールアドレス
-$returnMail = mailTo
+$returnMail = $mailTo;
 header('X-FRAME-OPTIONS: SAMEORIGIN');
 
 session_start();

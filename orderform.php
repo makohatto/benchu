@@ -59,7 +59,7 @@ $token = $_SESSION['token'];
                 <?php endfor ?>
               <?php endif ?>
               <p class="price"><?php echo $menu->getTaxIncludedPrice() ?>円（税込）</p>
-              <input type="text" name="<?php echo $menu->getName() ?>" value="">
+              <input type="text" name="<?php echo $menu->getName() ?>" value="0">
               <span>個</span>
             </div>
         <?php endforeach ?>

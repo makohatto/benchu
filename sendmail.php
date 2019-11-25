@@ -1,10 +1,10 @@
 <?php
-function sendmail($formName,$from,$to,$subject,$body,$returnPath = null) {
+function sendmail($fromName,$from,$to,$subject,$body,$returnPath = null) {
 //メールアドレスや件名に改行コードが含まれないことをチェックします
-  if(preg_match('/[￥r￥n]', $fromName) !==0
-    || preg_match('/[￥r￥n]', $from) !==0
-    || preg_match('/[￥r￥n]', $to) !==0
-    || preg_match('/[￥r￥n]', $subject) !==0)
+  if(preg_match('/[￥r￥n]/', $fromName) !==0
+    || preg_match('/[￥r￥n]/', $from) !==0
+    || preg_match('/[￥r￥n]/', $to) !==0
+    || preg_match('/[￥r￥n]/', $subject) !==0){
     die('不正な入力が検出されました。');
   }
 
@@ -22,4 +22,5 @@ if(ini_get('safe_mode')) {
   $result = mb_send_mail($to,$subject,$body,$header,'-f'.$returnPath);
 }
 return $result;
-?>
+}
+/*?>no exittag*/
