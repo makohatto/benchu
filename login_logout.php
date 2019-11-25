@@ -14,9 +14,9 @@ session_destroy();
    </head>
    <body>
      <div>
-       <h3>ひがながソフトテニス部ギャラリー</h3>
+       <h3>だいこん畑お弁当注文フォーム</h3>
        <p>ログアウトしました。</p>
-       <p><a href="index.php" >もう一度ログインする</a></p>
+       <p><a href="orderform.php" >もう一度ログインする</a></p>
      </div>
    </body>
  </html>

@@ -46,12 +46,12 @@ if ($_SESSION['auth'] !== true) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <title>木村・佐藤ペア専用アルバム</title>
+        <title>お弁当注文フォーム</title>
   </head>
   <body>
   <div id="login">
     <h1>認証フォーム</h1>
-    <h3>ひがながソフトテニス部ギャラリー2013~2019年</h3>
+    <h3>だいこん畑お弁当注文フォーム</h3>
     <?php
     if ($error){    //エラー文がセットされていれば赤色で表示
       echo '<p style="color:red;">' .h($error).'</p>';

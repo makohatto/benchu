@@ -1,6 +1,19 @@
 <?php
-require_once('data.php');
-require_once('menu.php');
+require_once 'login.php';
+require_once 'h.php';
+require_once 'data.php';
+require_once 'menu.php';
+header('X-FRAME-OPTIONS: SAMEORIGIN');
+
+if(!isset($_SESSION)){
+session_start();
+}
+//固定トークンを生成してセッション変数に保存。
+//フォームに隠しフィールドで出力します。
+if (! isset($_SESSION['token'])) {
+  $_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(32));
+}
+$token = $_SESSION['token'];
  ?>
 
 <!doctype html>
@@ -14,11 +27,20 @@ require_once('menu.php');
     <link href='https://fonts.googleapis.com/css?family=Pacifico|Lato' rel='stylesheet' type='text/css'>
   </head>
   <body>
+
     <div class="row">
-
-
     <div class="menu-wrapper container">
-      <h1 class="logo">だいこんばたけ</h1>
+      <h1 class="logo">だいこん畑</h1>
+      <h1><?php echo h($_SESSION['username']); ?>さんの注文ページ</h1>
+      <?php
+      //エラーがあったら表示する
+      if (isset($_SESSION['error'])) {
+        foreach ($_SESSION['error'] as $value) {
+          echo ' <span style="color:red;">' . h($value) . '</span><br>' ."￥n";
+        }
+      }
+      $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+      ?>
       <h3>メニュー<?php echo Menu::getCount() ?>品</h3>
       <form action="confirm.php" method="post">
         <div class="menu-items">
@@ -30,19 +52,22 @@ require_once('menu.php');
               <p class="menu-item-type"><?php echo $menu->getType() ?></p>
               <?php else: ?>
                 <p>ごはん増量：</p>
-                <input type="text" name="<?php echo $menu->getName() ?>" value="0">
+                <input type="text" name="<?php echo $menu->getName() ?>" value="">
                 <span>倍</span>
                 <?php for($i=0;$i<$menu->getZoryo();$i++): ?>
                   <img src="image/zoryo.png" class="icon-spiciness">
                 <?php endfor ?>
               <?php endif ?>
-              <p class="price">￥<?php echo $menu->getTaxIncludedPrice() ?>（税込）</p>
-              <input type="text" name="<?php echo $menu->getName() ?>" value="0">
+              <p class="price"><?php echo $menu->getTaxIncludedPrice() ?>円（税込）</p>
+              <input type="text" name="<?php echo $menu->getName() ?>" value="">
               <span>個</span>
             </div>
-          <?php endforeach ?>
+        <?php endforeach ?>
         </div>
-        <input type="submit" value="注文する">
+        <input type="hidden" name="token" value="<?php echo h($token); ?>">
+        <input type="submit" value="注文する"><br>
+        <br>
+        <a href="login_logout.php">ログアウトする</a>
       </form>
     </div>
 
