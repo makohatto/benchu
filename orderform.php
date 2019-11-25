@@ -29,7 +29,9 @@ require_once('menu.php');
               <?php if($menu instanceof Side): ?>
               <p class="menu-item-type"><?php echo $menu->getType() ?></p>
               <?php else: ?>
-                <p>ごはん増量：<?php echo $menu->getZoryo() ?>倍</p>
+                <p>ごはん増量：</p>
+                <input type="text" name="<?php echo $menu->getName() ?>" value="0">
+                <span>倍</span>
                 <?php for($i=0;$i<$menu->getZoryo();$i++): ?>
                   <img src="image/zoryo.png" class="icon-spiciness">
                 <?php endfor ?>

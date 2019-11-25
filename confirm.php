@@ -1,4 +1,9 @@
-<?php require_once('data.php'); ?>
+<?php
+require_once('h.php');
+require_once('checkInput.php');
+require_once('data.php');
+header('X-FRAME-OPTIONS: SAMEORIGIN');    
+?>
 
 <!doctype html>
 <html lang="ja">
