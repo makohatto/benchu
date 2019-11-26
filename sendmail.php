@@ -1,5 +1,6 @@
 <?php
-function sendmail($fromName,$from,$to,$subject,$body,$returnPath = null) {
+function sendmail($fromName,$from,$to,$subject,$body,$returnPath = null)
+ {
 //メールアドレスや件名に改行コードが含まれないことをチェックします
   if(preg_match('/[￥r￥n]/', $fromName) !==0
     || preg_match('/[￥r￥n]/', $from) !==0

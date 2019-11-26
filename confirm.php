@@ -1,11 +1,11 @@
 <?php
 require_once 'h.php';
-require_once 'checkInput.php';
+//require_once 'checkInput.php';
 require_once 'data.php';
 header('X-FRAME-OPTIONS: SAMEORIGIN');
 
 session_start();
-$_POST = checkInput($_POST) ;
+//$_POST = checkInput($_POST) ;
 if (isset($_POST['token']) && isset($_SESSION['token'])) {
   $token = $_POST['token'];
   if ($token != $_SESSION['token']) {
@@ -43,7 +43,7 @@ $error = array();
 $_SESSION['username'] = $username;
 //$_SESSION['email'] = $email;
 //$_SESSION['comment'] = $comment;
-//$_SESSION['error'] = $error;
+$_SESSION['error'] = $error;
 
 //エラー数を確認
 if (count($error) > 0) {
@@ -70,7 +70,7 @@ if (count($error) > 0) {
   </head>
   <body>
     <div class="order-wrapper">
-      <h2><?php echo h($_SESSION['username']); ?>さんの注文内容確認</h2>
+      <h2><?php echo h($_SESSION['username']) ?>さんの注文内容確認</h2>
       <h3>以下の内容でよろしければ、送信ボタンを押してください。</h3>
       <?php $totalPayment = 0 ?>
 

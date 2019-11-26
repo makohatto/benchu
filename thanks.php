@@ -1,6 +1,6 @@
 <?php
 require_once 'h.php';
-require_once 'checkInput.php';
+//require_once 'checkInput.php';
 require_once 'sendmail.php';
 
 $mailTo = 'info@plandomakohatto.sakura.ne.jp';
@@ -10,7 +10,7 @@ $returnMail = $mailTo;
 header('X-FRAME-OPTIONS: SAMEORIGIN');
 
 session_start();
-$_POST = checkInput($_POST);
+//$_POST = checkInput($_POST);
 if (isset($_POST['token']) && isset($_SESSION['token'])) {
   $token = $_POST['token'];
   if($token != $_SESSION['token']) {
