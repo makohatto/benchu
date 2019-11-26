@@ -70,7 +70,7 @@ if (count($error) > 0) {
   </head>
   <body>
     <div class="order-wrapper">
-      <h2><?php echo h($_SESSION['username']) ?>さんの注文内容確認</h2>
+      <h2><?php echo h($username); ?>さんの注文内容確認</h2>
       <h3>以下の内容でよろしければ、送信ボタンを押してください。</h3>
       <?php $totalPayment = 0 ?>
 

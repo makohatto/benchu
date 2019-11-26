@@ -31,7 +31,7 @@ $token = $_SESSION['token'];
     <div class="row">
     <div class="menu-wrapper container">
       <h1 class="logo">だいこん畑</h1>
-      <h1><?php echo h($_SESSION['username']); ?>さんの注文ページ</h1>
+      <h1>お弁当注文フォーム</h1>
       <?php
       //エラーがあったら表示する
       if (isset($_SESSION['error'])) {
@@ -44,6 +44,7 @@ $token = $_SESSION['token'];
       <h3>メニュー<?php echo Menu::getCount() ?>品</h3>
       <form action="confirm.php" method="post">
         <div class="menu-items">
+          <h2><?php echo h($_SESSION['username']); ?>さんの注文明細</h2>
           <?php foreach($menus as $menu): ?>
             <div class="menu-item">
               <img src="<?php echo $menu->getImage() ?>" class="menu-item-image">
