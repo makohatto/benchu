@@ -1,10 +1,13 @@
 <?php
+require_once 'login.php';
 require_once 'h.php';
 //require_once 'checkInput.php';
 require_once 'data.php';
 header('X-FRAME-OPTIONS: SAMEORIGIN');
 
+if(!isset($_SESSION)){
 session_start();
+}
 //$_POST = checkInput($_POST) ;
 if (isset($_POST['token']) && isset($_SESSION['token'])) {
   $token = $_POST['token'];
@@ -23,11 +26,11 @@ $error = array();
 //メールアドレス欄をチェック
 //if (trim($name) == '') {
 //  $error[] = 'お名前は必須項目です。';
-//} elseef (mb_strlen($email) > 256) {
+//} elseif (mb_strlen($email) > 256) {
 //  $error[] = 'メールアドレスは256文字以内でお願い致します。';
 //} else {
 //  $pattern = '/￥A([a-z0-9_￥-￥+￥/￥?]+)(￥.[a-z0-9_￥-￥+￥/￥?]+)*'.
-//              '@([a-z0-9￥.]+￥.)+[a-z]{2,6}￥z/i';
+//              '@([a-z0-9￥-]+￥.)+[a-z]{2,6}￥z/i';
 //  if (! preg_match($pattern, $email)) {
 //    $error[] = 'メールアドレスの形式が正しくありません。';
 //  }
@@ -49,15 +52,14 @@ $_SESSION['error'] = $error;
 if (count($error) > 0) {
 //エラーがある場合、入力フォームに戻す
   $dirname = dirname($_SERVER['SCRIPT_NAME']);
-  $dirname = (dirname == DIRECTORY_SEPARATOR)? '' : $dirname;
-  $url = 'http://' . $_SERVER['$_SERVER_NAME'] .
-          dirname . '/orderform.php';
+  $dirname = ($dirname == DIRECTORY_SEPARATOR)? '' : $dirname;
+  $uri = 'http://' . $_SERVER['SERVER_NAME'] .
+          $dirname . 'orderform.php';
   header('HTTP/1.1 303 See Other');
-  header('Location: ' . $url);
+  header('Location: ' . $uri);
   //確認画面を表示する
 } else {
 ?>
-
 <!doctype html>
 <html lang="ja">
   <head>
@@ -71,9 +73,8 @@ if (count($error) > 0) {
   <body>
     <div class="order-wrapper">
       <h2><?php echo h($username); ?>さんの注文内容確認</h2>
-      <h3>以下の内容でよろしければ、送信ボタンを押してください。</h3>
+      <h3>以下の内容でよろしければ、.<br>.送信ボタンを押してください。</h3>
       <?php $totalPayment = 0 ?>
-
       <?php foreach ($menus as $menu): ?>
         <?php
           $orderCount = $_POST[$menu->getName()];
@@ -103,4 +104,5 @@ if (count($error) > 0) {
   </body>
 </html>
 <?php
-} ?>
+}
+/* ?>*/

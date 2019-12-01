@@ -9,7 +9,7 @@ function checkInput($var) {
   }
 //nullバイト攻撃対策
 //nullバイトを含む制御文字が含まれていないかをチェックする
-  if(preg_match('/A[￥r￥n￥t[:^cntrl:]]{0,1000}￥z/u',$var) == 0) {
+  if(preg_match('/￥A[￥r￥n￥t[:^cntrl:]]{0,1000}￥z/u',$var) == 0) {
     die('不正な入力です。');
   }
 //文字エンコードの確認を行います。
